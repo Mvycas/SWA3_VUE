@@ -27,11 +27,11 @@ export default {
     async handleLogin({ commit }, {username, password}) {
       try {
         const userData = await login(username, password);
-        commit('setUserData', userData);
         commit('setUserName', username);
+        commit('setUserData', userData);
         commit('setErrorMessage', '');
       } catch (error) {
-        commit('setErrorMessage', error.message);
+        commit('setErrorMessage', "Bad credentials");
       }
     },
     async handleLogout({ state, commit }) {
@@ -39,7 +39,7 @@ export default {
           await logout(state.userData.token);
           commit('resetState');
         } catch (error) {
-          commit('setErrorMessage', error.message);
+          commit('setErrorMessage', "Logout failed: No user is logged in");
         }
       }
   },
@@ -48,5 +48,6 @@ export default {
     userId: state => state.userData.userId,
     token: state => state.userData.token,
     isLogged: state => !!state.userData, // check on it
+    errorMessage: state => state.errorMessage,
   }
 };
