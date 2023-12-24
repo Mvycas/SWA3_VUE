@@ -1,4 +1,4 @@
-import { login } from '../../service/AuthService';
+import { login, logout } from '../../service/AuthService';
 
 export default {
   namespaced: true,
@@ -16,7 +16,12 @@ export default {
       },
     setErrorMessage(state, message) {
       state.errorMessage = message;
-    }
+    },
+    resetState(state) {
+        state.userData = ''; 
+        state.userName = '';
+        state.errorMessage = '';
+      }
   },
   actions: {
     async handleLogin({ commit }, {username, password}) {
@@ -28,7 +33,15 @@ export default {
       } catch (error) {
         commit('setErrorMessage', error.message);
       }
-    }
+    },
+    async handleLogout({ state, commit }) {
+        try {
+          await logout(state.userData.token);
+          commit('resetState');
+        } catch (error) {
+          commit('setErrorMessage', error.message);
+        }
+      }
   },
   getters: {
     userName: state => state.userName,

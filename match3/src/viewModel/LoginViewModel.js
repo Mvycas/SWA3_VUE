@@ -18,5 +18,14 @@ export default function LoginViewModel() {
     }
   };
 
-  return { username, password, handleLogin, errorMessage };
+  const handleLogout = async () => {
+    try {
+      await store.dispatch('login/handleLogout');
+      errorMessage.value = '';
+    } catch (error) {
+      errorMessage.value = error.message;
+    }
+  };
+
+  return { username, password, handleLogin, errorMessage, handleLogout };
 }

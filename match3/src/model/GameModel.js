@@ -1,3 +1,33 @@
+import {candyColors} from "../constants/gameConstants"
+import {boardWidth, boardDepth} from "../constants/gameConstants"
+
+class SequenceGenerator {
+    constructor(tiles) { // tiles array
+        this.tiles = tiles;
+    }
+
+    next() {
+        const randomIndex = Math.floor(Math.random() * this.tiles.length);
+        return this.tiles[randomIndex];
+    }
+}
+
+//INIT score
+let score = 0;
+
+// Function to initialize the board
+export function initBoard() {
+    const candyColorsArray = Object.values(candyColors); 
+    let generator = new SequenceGenerator(candyColorsArray); // init generator with candyCollorsArray
+    return create(generator, boardWidth, boardDepth, score, null);
+}
+
+// Function to move a tile
+const moveTile = (first, second, board) => {
+    return moveBoard(generator, board, first, second); // cia thunk????
+}
+
+
 export function create(generator, width, height, score, placeholder) {
     const tiles = createEmptyBoard(width, height, placeholder);
 
@@ -32,11 +62,11 @@ function createEmptyBoard(width, height, placeholder) {
     return Array.from({ length: height }, () => Array.from({ length: width }, () => placeholder));
 }
 
-export function piece(board, p) {
+function piece(board, p) {
     return (p.row >= 0 && p.row < board.h && p.col >= 0 && p.col < board.w) ? board.tiles[p.row][p.col] : undefined;
 }
 
-export function canMove(board, first, second) {
+function canMove(board, first, second) {
 
     if (!isWithinBounds(board, first) || !isWithinBounds(board, second)) {
         return false;
@@ -48,7 +78,7 @@ export function canMove(board, first, second) {
     return isHorizontalNeighbor || isVerticalNeighbor;
 }
 
-export function canMove(generator, board, first, second) {
+function move(generator, board, first, second) {
     
     let newBoard = swapTiles(board.tiles, first, second);
     
@@ -184,3 +214,5 @@ const refill = (board, generator) => {
 function isWithinBounds(board, position) {
     return position.row >= 0 && position.row < board.h && position.col >= 0 && position.col < board.w;
 }
+
+export default { moveTile, initBoard };

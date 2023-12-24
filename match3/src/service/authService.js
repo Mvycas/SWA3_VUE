@@ -40,7 +40,7 @@ async function register(username, password) {
 
 async function logout(token) {
   try {
-    const response = await fetch(`${baseUrl}/logout?token=${encodeURIComponent(token)}`, {
+    const response = await fetch(`${baseUrl}/logout?token=${token}`, {
       method: "POST",
       headers: headers,
     });
