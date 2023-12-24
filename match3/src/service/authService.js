@@ -13,7 +13,6 @@ async function login(username, password) {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    console.log("success?");
     return { token: data.token, userId: data.userId };
   } catch (error) {
     throw error;

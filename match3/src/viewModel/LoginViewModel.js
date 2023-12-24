@@ -1,20 +1,22 @@
+// LoginViewModel.js
 import { ref } from 'vue';
-import { login } from '../service/AuthService';
-import UserModel from '../model/UserModel';
+import { useStore } from 'vuex';
 
 export default function LoginViewModel() {
+  const store = useStore();
+  
   const username = ref('');
   const password = ref('');
-  const user = ref(new UserModel());
+  const errorMessage = ref('');
 
   const handleLogin = async () => {
     try {
-      const userData = await login(username.value, password.value);
-      user.value = new UserModel(userData.token, userData.userId);
+      await store.dispatch('login/handleLogin', { username: username.value, password: password.value });
+      errorMessage.value = '';
     } catch (error) {
-      console.error('Login failed:', error.message);
+      errorMessage.value = error.message;
     }
   };
 
-  return { username, password, user, handleLogin };
+  return { username, password, handleLogin, errorMessage };
 }
