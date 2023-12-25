@@ -1,8 +1,7 @@
 // GameService.js
 const API_BASE_URL = 'http://localhost:9090'; // PUT IT IN GAMECONSTANT FILE LATER / MULTIPLE USAGE IN BETWEEN FILES
 
-const GameService = {
-  async saveBoard(gameId, userToken, score, timeLeft) {
+  async function saveBoard(gameId, userToken, score, timeLeft) {
     try {
       const response = await fetch(`${API_BASE_URL}/games/${gameId}?token=${userToken}`, {
         method: "PATCH",
@@ -19,9 +18,9 @@ const GameService = {
     } catch (error) {
       return Promise.reject(error.message || "Unknown error occurred");
     }
-  },
+  }
 
-  async endGame(gameId, userToken) {
+  async function endGame(gameId, userToken) {
     try {
       const response = await fetch(`${API_BASE_URL}/games/${gameId}/?token=${userToken}`, {
         method: "PATCH",
@@ -38,9 +37,9 @@ const GameService = {
     } catch (error) {
       return Promise.reject(error.message || "Unknown error occurred");
     }
-  },
+  }
 
-  async startNewGame(userToken) {
+  async function startNewGame(userToken) {
     try {
       const response = await fetch(`${API_BASE_URL}/games?token=${userToken}`, {
         method: "POST",
@@ -57,6 +56,6 @@ const GameService = {
       return Promise.reject(error.message || "Unknown error occurred");
     }
   }
-};
 
-export default GameService;
+
+export {saveBoard, endGame, startNewGame};

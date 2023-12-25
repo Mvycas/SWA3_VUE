@@ -3,6 +3,7 @@ import { login, logout } from '../../service/AuthService';
 export default {
   namespaced: true,
   state: {
+    isLogged: false,
     userData: '',
     userName: '',
     errorMessage: ''
@@ -10,6 +11,7 @@ export default {
   mutations: {
     setUserData(state, userData) {
       state.userData = userData;
+      state.isLogged = true;
     },
     setUserName(state, userName) {
         state.userName = userName;
@@ -19,6 +21,7 @@ export default {
     },
     resetState(state) {
         state.userData = ''; 
+        state.isLoggedIn = false; 
         state.userName = '';
         state.errorMessage = '';
       }
@@ -47,7 +50,7 @@ export default {
     userName: state => state.userName,
     userId: state => state.userData.userId,
     token: state => state.userData.token,
-    isLogged: state => !!state.userData, // check on it
+    isLogged: state => state.isLogged, // check on it
     errorMessage: state => state.errorMessage,
   }
 };

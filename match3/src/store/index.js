@@ -1,11 +1,13 @@
 // store/index.js
-import { createStore } from 'vuex'
 import login from './modules/login';
 import game from './modules/game';
+import { createStore } from 'vuex'
 
-export default createStore({
+export const store = createStore({
   modules: {
     login,
     game
-    }
+    },
 });
+
+export default store;

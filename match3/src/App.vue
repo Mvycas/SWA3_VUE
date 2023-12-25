@@ -1,10 +1,12 @@
 <script setup>
+import GameView from './view/GameView.vue';
 import LoginView from './view/LoginView.vue';
 import RegisterView from './view/RegisterView.vue';
 
 </script>
 
 <template>
+  <GameView /> 
   <LoginView />
   <RegisterView />
 </template>

@@ -14,17 +14,18 @@ class SequenceGenerator {
 
 //INIT score
 let score = 0;
+let generator;
 
 // Function to initialize the board
 export function initBoard() {
     const candyColorsArray = Object.values(candyColors); 
-    let generator = new SequenceGenerator(candyColorsArray); // init generator with candyCollorsArray
+    generator = new SequenceGenerator(candyColorsArray); // init generator with candyCollorsArray
     return create(generator, boardWidth, boardDepth, score, null);
 }
 
 // Function to move a tile
-const moveTile = (first, second, board) => {
-    return moveBoard(generator, board, first, second); // cia thunk????
+export const moveTile = (first, second, board) => {
+    return move(generator, board, first, second); // cia thunk????
 }
 
 
@@ -66,7 +67,7 @@ function piece(board, p) {
     return (p.row >= 0 && p.row < board.h && p.col >= 0 && p.col < board.w) ? board.tiles[p.row][p.col] : undefined;
 }
 
-function canMove(board, first, second) {
+export function canMove(board, first, second) {
 
     if (!isWithinBounds(board, first) || !isWithinBounds(board, second)) {
         return false;
@@ -215,4 +216,4 @@ function isWithinBounds(board, position) {
     return position.row >= 0 && position.row < board.h && position.col >= 0 && position.col < board.w;
 }
 
-export default { moveTile, initBoard };
+export default { moveTile, initBoard, canMove };
