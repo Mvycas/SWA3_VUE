@@ -21,16 +21,6 @@ export default {
         },
     },
         mutations: {
-            // saveBoard(state, board, remainingTime) {
-            //     state.board = board;
-            //     state.remainingTime = remainingTime;
-            // },
-            // startGame(state, board, gameId, remainingTime, allocatedTime) {
-            //     state.board = board;
-            //     state.gameId = gameId;
-            //     state.remainingTime = remainingTime;
-            //     state.allocatedTime = allocatedTime;
-            // },
             // endGame(state) {
             //     state.isEnd = true;
             //     state.isPaused = false;
@@ -47,12 +37,6 @@ export default {
             //     // state.isEnd = false;
             //     state.isPaused = false;
             //     state.isRunning = true;
-            // },
-            // setIsRunningTrue(state) {
-            //     state.isRunning = true;
-            // },
-            // setErrorMessage(state, message) {
-            //     state.errorMessage = message;
             // }
             setIsRunning(state, isRunning) {
                 state.isRunning = isRunning;
