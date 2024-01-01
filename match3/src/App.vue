@@ -1,14 +1,21 @@
 <script setup>
-import GameView from './view/GameView.vue';
-import LoginView from './view/LoginView.vue';
-import RegisterView from './view/RegisterView.vue';
+
 
 </script>
 
 <template>
-  <GameView /> 
-  <LoginView />
-  <RegisterView />
+  <div>
+    <router-link to="/login">
+      Login
+    </router-link>
+    <router-link to="/register">
+      Register
+    </router-link>
+    <router-link to="/">
+      Game
+    </router-link>
+    <router-view />
+  </div>
 </template>
 
 <style scoped>

@@ -5,7 +5,7 @@
       <p>User ID: {{ tokken }}</p>
       <p>Error: {{ errorMessage }}</p>
       <input v-model="username" placeholder="Username" />
-      <input type="password" v-model="password" placeholder="Password" />
+      <input v-model="password" type="password" placeholder="Password" />
       <button @click="handleLogin">Login</button>
       <button @click="handleLogout">logout</button>
     </div>

@@ -1,14 +1,15 @@
 <template>
     <div class="game-container">
-      <button v-if="isGameRunning" @click="pauseGame">Pause</button>
-      <button v-if="isGameRunning" @click="resumeGame">Resume</button>
-      <EndGame v-if="isEnd && !isGameRunning" :score="score" :time="allocatedTime" />
+      <!-- <button v-if="isGameRunning" @click="pauseGame">Pause</button>
+      <button v-if="isGameRunning" @click="resumeGame">Resume</button> -->
+      <button v-if="isLoggedIn" @click="handleLogout()">Log out</button>
+     
       <!-- <div v-if="!isGameRunning"> -->
         <!-- Menu and Game Creation -->
         <button v-if="isLoggedIn" @click="createNewGame()">Create New Game</button>
         <p v-else>You need to log in to start a new game.</p>
       <!-- </div> -->
-      <div v-if="isGameRunning" class="game-board">
+      <div v-if="isGameRunning && isLoggedIn" class="game-board">
         <div v-for="(row, rowIndex) in board.tiles" :key="rowIndex">
           <img v-for="(candyColor, colIndex) in row" :key="colIndex"
                :src="candyColor" :alt="`Tile ${rowIndex}-${colIndex}`"
@@ -20,7 +21,7 @@
                @click="handleTileClick(rowIndex, colIndex)" />
       </div>
       </div>
-      <div v-if="isGameRunning">
+      <div v-if="isGameRunning && isLoggedIn">
         <h1>{{ score }}</h1>
       </div>
     </div>
@@ -40,7 +41,8 @@
     gameId,
     isLoggedIn,
     handleTileClick,
-    createNewGame
+    createNewGame, 
+    handleLogout
   } = GameViewModel();
 
   </script>

@@ -60,6 +60,10 @@ const handleTileClick = (rowIndex, colIndex) => {
     firstSelectedTile.value = null;
   };
 
+  const handleLogout = async () => {
+    await store.dispatch('login/handleLogout');
+};
+
   return {
     isTileSelected,
     remainingTime,
@@ -71,7 +75,8 @@ const handleTileClick = (rowIndex, colIndex) => {
     gameId,
     isLoggedIn,
     handleTileClick,
-    createNewGame
+    createNewGame,
+    handleLogout
   };
 }
 

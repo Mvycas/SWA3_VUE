@@ -21,7 +21,7 @@ export default {
     },
     resetState(state) {
         state.userData = ''; 
-        state.isLoggedIn = false; 
+        state.isLogged = false; 
         state.userName = '';
         state.errorMessage = '';
       }
